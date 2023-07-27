@@ -143,7 +143,7 @@
   bottom: 50px;  
   justify-content: flex-end;
   align-items: center;
-  gap: 60px;
+  gap: 79px;
 }
 
 .cover__description-text {
@@ -152,7 +152,11 @@
   font-weight: 400;
   line-height: 28px;
   text-transform: uppercase;
-  word-spacing: 18px;
+  word-spacing: 17px;
+}
+
+.cover__description-text span {
+  word-spacing: 22px;
 }
 
 .bet-button {
