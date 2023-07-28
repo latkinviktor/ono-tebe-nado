@@ -26,9 +26,13 @@
         </ul>
       </nav>
       <a class="header__logo">
-        <img class="header__logo-image" src="./images/logo-black.svg">
+        <img  class="header__logo-image" 
+              src="./images/logo-black.svg"
+              alt="логотип чёрного цвета на белом фоне, 
+              стилизованная фраза 'оно тебе надо'"
+              >
       </a>
-      <address class="header__address">
+      <address class="address">
         <a class="header__link" href="tel:+99995555555">+9 999 555 5555</a><br>
         <a class="header__link" href="mailto:info@sobaka.ge">info@sobaka.ge</a><br>
         <a class="header__link header__link_active" target="_blank"
@@ -61,7 +65,7 @@
         <li class="lots__card-list-item">
           <a class="card-link">
             <article class="card card_type_film">
-              <div class="overlay">
+              <div class="card__content overlay">
                 <h4 class="card__title">
                   Фильм режиссёра, который  бросил киношколу
                 </h4>
@@ -77,7 +81,7 @@
         <li class="lots__card-list-item">
           <a class="card-link">
             <article class="card card_type_book">
-              <div class="overlay">
+              <div class="card__content overlay">
                 <h4 class="card__title">
                   Книга, где описан один скучный день из жизни рекламного агента
                 </h4>
@@ -95,7 +99,7 @@
         <li class="lots__card-list-item">
           <a class="card-link">
             <article class="card card_type_picture">
-              <div class="overlay">
+              <div class="card__content overlay">
                 <h4 class="card__title">
                   Картина, которую повторит даже 5-летний сын маминой подруги
                 </h4>
@@ -115,9 +119,12 @@
       <a class="lots__look-more-link header__link">посмотреть больше</a>
     </section>
     <section class="about">
-      <div class="about__column">
+      <div class="logo__column">
         <div class="about__logo">
-          <img class="header__logo-image" src="./images/logo-white.svg">
+          <img  src="./images/logo-white.svg"
+                alt="логотип белого цвета на чёрном фоне,
+                 стилизованная фраза 'оно тебе надо'"
+                >
         </div>
       </div>
       <div class="about__column">
@@ -139,6 +146,53 @@
         </p>
       </div>
     </section>
-    <footer class="footer"></footer>
+    <footer class="footer">
+      <address class="address">
+        <a class="header__link" href="tel:+99995555555">+9 999 555 5555</a><br>
+        <a class="header__link" href="mailto:info@sobaka.ge">info@sobaka.ge</a><br>
+        <a  class="header__link header__link_active" target="_blank"
+            href="https://yandex.ru/maps/10466/amsterdam/?from=tabbar&ll=4.884320%2C52.375302&mode=whatshere&source=serp_navig&whatshere%5Bpoint%5D=4.884107%2C52.375331&whatshere%5Bzoom%5D=19.9&z=19.9"
+        >наб. Принсенграхт 263-265,<br> Амстердам</a>
+      </address>
+      <nav class="footer__menu">
+        <ul class="footer__menu-list">
+          <li class="footer__menu-list-item">
+            <a class="footer__menu-link footer__menu-link_active" href="#">главная</a>
+          </li>
+          <li class="footer__menu-list-item">
+            <a class="footer__menu-link" href="#">посмотреть лоты</a>
+          </li>
+          <li class="footer__menu-list-item">
+            <a class="footer__menu-link" href="#">об аукционе</a>
+          </li>
+        </ul>
+      </nav>
+      <ul class="footer__social-list">
+        <li class="footer__social-list-item">
+          <a class="footer__social-link">
+            <img  class="footer__social-icon" 
+                  src="./images/yt.svg"
+                  alt="ссылка на видеохостинг ютьюб"
+                  >
+          </a>
+        </li>
+        <li class="footer__social-list-item">
+          <a class="footer__social-link">
+            <img  class="footer__social-icon" 
+                  src="./images/vk.svg"
+                  alt="ссылка на соцсеть вконтакте"
+                  >
+          </a>
+        </li>
+        <li class="footer__social-list-item">
+          <a class="footer__social-link">
+            <img  class="footer__social-icon" 
+                  src="./images/pinterest.svg"
+                  alt="ссылка на соцсеть пинтерест"
+                  >
+          </a>
+        </li>
+      </ul>
+    </footer>
   </body>
 </html>
