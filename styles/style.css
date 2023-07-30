@@ -1,20 +1,28 @@
 .header {
+  /*центрируем логотип внутри header*/
+  position: relative;
+  /*раскидываем меню и контакты по краям*/
   display: flex;
   justify-content: space-between;
+  /*выравниваем меню и контакты вертикально по центру*/
   align-items: center;
-  position: relative;
-  height: 109px;
-  margin: 92px 51px 92px 51px;
+  /*внутренними отступами растягиваем header, чтобы приблизиться к макету;
+  если сделать сверху и снизу по 92, как на макете, 
+  то PerfectPixel показывает смещение;
+  слева и справа указаны, как на макете.*/
+  padding: 98px 49px 98px 51px;
 }
 
 .header__menu {
-  width: 388px;
-  height: 23px;
+  /* display: inline-block; */
+  /* max-width: 388px; */
+  /* width: 100%; */
+  /* height: 23px; */
 }
 
 .header__links-list {
   display: flex;
-  height: 23px;
+  /* height: 23px; */
   gap: 32px;
 }
 
@@ -29,61 +37,104 @@
 .header__link {
   font-size: 18px;
   font-weight: 400;
+  /* underline прилипает к буквам,а border-bottom немного отстоит от них,
+  что видно на макете */
   text-decoration-line: none;
   border-bottom: 1px solid #000;
 }
 
 .header__link_active {
+  /* открытая ссылка выделяется от остальных отсутствием
+  подчёркивания, то есть в моей версии нижней границы элемента */
   border-bottom: 0px;
+  /* можно даже сделать ссылку некликабельной, но задача пока такая не стоит. */
+  /* pointer-events: none; */
+}
+
+/* комментарий от ревьюера: добавить эффект наведения */
+.header__link:hover {
+  color: #F99;
+  border-bottom: 1px solid #F99;
+}
+
+.header__link_active:hover {
+  cursor: default;
+  font-size: 18px;
+  font-weight: 400;
+  /* underline прилипает к буквам,а border-bottom немного отстоит от них,
+  что видно на макете */
+  text-decoration-line: none;
+  color: currentColor;
+  border-bottom: 0px solid #000;
 }
 
 .header__logo {
+  /* тег ссылки делаем блочным */
   display: block;
-  position: relative;
-  width: 148px;
-  height: 105px;
-  left: -75px;
-  top: -2px;
+  /* убираем из конкекста, чтобы центрировать внунтри header */
+  position: absolute;
+  /* отношение ширины контейнера к ширине экрана, в процентах;
+  указываем в процентах, чтобы при масштабировании сохранялась
+  пропорция */
+  width: 9.4%;
+  /* горизонтальное выравнивание по центру (100 - 9.4) // 2 == 45.3 */
+  inset: auto 45.3%;
 }
 
 .header__logo-image {
-  height: 100%;
+  /* height: 100%; */
 }
 
 .address {
-  grid-column: -1/-3;
   font-size: 18px;
+  /* по умолчанию, в address font-style: italic */
   font-style: normal;
   font-weight: 400;
+  /* после комментариев от ревьюера ограничил ширину,
+  ограничил в процентах от ширины header, вычислил по макету 17.9%, округлил с избытком; 
+  тут неприятность только с почтовым адресом компании, он редко меняется, 
+  а редкими случаями программисты занимаются по мере их наступления */
+  max-width: 18%;
   line-height: 1.35;
 }
 
 .cover {
+  /* relative, чтобы вложенный overlay спозиционировать абсолютно*/
   position: relative;
-  width: 100%;
-  height: 757px;
+  /* задаю внутренние отступы для растягивания элемента, 
+  для вложенных элементов общий margin ноль
+  по глобальным установкам в global.css */
+  padding: 165px 50px 50px 50px;
+  /* эта комбинация позиционирования и размера фона наиболее близка к макету  */
   background-image: url(../images/cover.jpg);
+  background-position: center;
   background-size: cover;
-  z-index: -1;
 }
 
 .overlay {
+  /* прижимаю к границам родителя */
   position: absolute;
-  inset: 0;
+  inset: 0; 
+  /* затеняю родительский фон;
+  отрисовка позже,чем у родителя, поэтому z-index не указываем, */
   background-color: rgb(0, 0, 0, 0.6);
-  z-index: 0;
 }
 
 .cover__title {
+  /* нужно для сохранения порядка отрисовки,
+  без relative заголовок cover__title оказывается под слоем overlay*/
+  position: relative;
+  /* три слова заголовка из трёх дочерних span-ов
+  размещаем в столбец с отступом 20px.
+  Можно уточнить, что отступ горизонтальный, так как по смыслу 
+  эта часть страницы не может быть дополнена - это не контент, а название */
   display: flex;
-  /* height: 355px; */
-  margin: 165px 50px auto 50px;
   flex-direction: column;
-  gap: 20px;
-  /* padding: 184px 50px 0px 50px; */
+  row-gap: 20px;
+  /* шрифт по глобальным настройкам Raleway, 
+  остальное недефолтное настраиваем*/
   color: #FFF;
   font-size: 100px;
-  font-style: normal;
   font-weight: 700;
   letter-spacing: 30px;
   text-transform: uppercase;
@@ -92,8 +143,7 @@
 .aligned-text {
   text-align: left;
   letter-spacing: 30px;
-  line-height: 1.15; /* 100px */
-  height: 115px;
+  line-height: 1.15;
 }
 
 .aligned-text_center {
@@ -117,13 +167,18 @@
 }
 
 .cover__description {
+  /* нужно для сохранения порядка отрисовки,
+  без relative подзаголовок cover__description оказывается под слоем overlay*/
+  position: relative;
+  /* растягиваем cover*/
+  margin-top: 135px;
+  /* прижимаем подзаголовок и кнопку к правому краю 
+  и выравниваем вертикально*/
   display: flex;
-  position: absolute;
-  right: 50px;
-  bottom: 50px;  
   justify-content: flex-end;
   align-items: center;
-  gap: 79px;
+  /*gap соответствует значению в макете и отлично сводит в PerfectPixel */
+  gap: 78px;
 }
 
 .cover__description-text {
@@ -136,10 +191,20 @@
 }
 
 .cover__description-text span {
+  /* ограничиваем применение интервала между словами 
+  на span-ы для соответствия макету */
   word-spacing: 22px;
 }
 
 .bet-button {
+  /* Оставляю фиксированный размер, так как в комментариях в ревью
+  было указано не задавать размеры блокам и текстовым элементам, но не баттонам.
+  Это кнопка, и надпись на ней должна быть лаконичной, то есть
+  при возможной модификации страницы в кнопку не стоит добавлять лишние слова.
+  Эта высота 52px вполне позволяет увеличить размер шрифта, и, напротив,
+  без указания высоты кнопка уменьшается до размеров line-height,
+  что явно не соответсвует макету. 
+  Остальные настройки перенесены с макета.*/
   width: 257px;
   height: 52px;
   color: #fff;
@@ -151,34 +216,36 @@
 }
 
 .lots {
-  position: relative;
-  min-height: 579px;
-  margin: 180px 50px 0 50px;
+  padding: 180px 50px 0 50px;
 }
 
 .lots__heading {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 40px;
+  /* margin-top: 0; */
+  margin-left: 40px;
   font-size: 40px;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .lots__card-list {
-  position: absolute;
-  top: 74px;
-  display: flex;
-  justify-content: space-between;
-  height: 450px;
+  /* grid, чтобы не думать о размерах карточек, а gap зафиксируем. */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* Пока что одна строка, но вдруг захотим добавить на страницу
+  ещё три карточки. Второй ряд карточек принимает высоту самой высокой,
+  то есть ряды в этой типа "таблице" будут разной высоты. Я проверил!
+  На случай добавления карточек указал .lots__card-list-item {min-height: 450px;},
+  чтобы карточки не были мелкими.*/
+  grid-template-rows: auto;
   gap: 25px;
+  margin-top: 27px;
+  /* отменяет дефолтные маркеры списка */
   list-style-type: none;
 }
 
 .lots__card-list-item {
-  flex-grow: 1;
-  width: 430px;
+  /* На случай добавления карточек указал */
+  min-height: 450px;
 }
 
 .card-link {
@@ -188,88 +255,105 @@
 }
 
 .card {
+  /* relative, чтобы вложенный overlay спозиционировать абсолютно*/
   position: relative;
+  /* пробрасываем высоту */
   height: 100%;
-}
-.card_type_film {
-  height: 100%;
-  background-image: url(../images/card-lot-01.jpg);
+  /* общие отступы до контента: подзаголовка и  текста */
+  padding: 50px 40px;
+  /* изображения указаны в следующих классах */
   background-size: cover;
+}
+
+.card_type_film {
+  background-image: url(../images/card-lot-01.jpg);
 }
 
 .card_type_book {
   background-image: url(../images/card-lot-02.jpg);
-  background-size: cover;
 }
 
 .card_type_picture {
   background-image: url(../images/card-lot-03.jpg);
-  background-size: cover;
 }
 
 .card__content {
+  /*Подсказка из DevTools:
+  Свойство position: static препятствует работе свойства z-index.
+  Поэтому делаем relative, а z-index можно не указывать, так как в потоке
+  overlay появляется раньше и оказывается ниже контента.
+  */
+  position: relative;
+  /* Пробрасываем height.
+  Свойство height имеет приоритет, по моему наблюдению, перед gap и justify-content,
+  поэтому контент растянется вверх и вниз до размеров карточки, а высота карточки-родителя в 100% 
+  равна высоте lots__card-list, которая в свою очередь задаётся карточкой
+  с наибольшей высотой, вычисленной по её содержимому. Уф! */
+  height: 100%;
+  /* пофлексим */
   display: flex;
+  /* прижимаем подзаголовок карточки к верхней границе, а текст к нижней*/
   flex-direction: column;
   justify-content: space-between;
-  padding: 50px 40px;
-  height: 100%;
+  /* интервал 31px будет у карточки с самым большим объёмом текста*/
+  gap: 31px;
 }
 
 .card__title {
-  /* display: block;
-  position: absolute;
-  top: 0px;
-  left: 40px; */
   color: #FFF;
   font-size: 22px;
   font-weight: 700;
-  line-height: 1.2; /* 26.4px */
+  line-height: 1.2;
   text-decoration-line: underline;
   text-transform: uppercase;
 }
 
 .card__text {
-  /* display: block;
-  position: absolute;
-  inset: auto 40px 50px 40px; */
   color: #FFF;
   font-size: 20px;
   font-weight: 400;
-  line-height: 1.2; /* 24px */
+  line-height: 1.2;
 }
 
 .lots__look-more-link {
-  display: block;
-  position: absolute;
-  left: 40px;
-  bottom: 0;
-  color: #000;
+  /* маржин не подействовал на чистый инлайн;
+  пусть текст будет хоть частично инлайновым, а то не семантично */
+  display: inline-block;
+  margin: 30px auto 0px 40px;
+  color: currentColor;
   font-size: 20px;
   font-weight: 400;
 }
 
 .about {
-  width: 1340px;
-  height: 487px;
-  margin: 181px 50px 90px 50px;
+  /* растягиваем блок внутренними отступами */
+  padding: 180px 50px 0 50px;
+  /* прижмём два дочерних элемента (колонка с логотипом и колонка с текстом) 
+  к левому и правому краю */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  /* зафиксируем интервал между колонками, в купе с фиксацией колонки с логотипом даст
+  осавшееся пространство для колонки с текстом */
   gap: 25px;
 }
 
 .logo__column {
+  /* центрируем круглый логотип по горизонтали в своей колонке */
   padding: 0 95px;
 }
 
 .about__logo{
-  position: relative; 
+  /* делаем чёрный кружочек */
   width: 240px;
   height: 240px;
   padding: 63px 46px;
   background-color: #000;
   border-radius: 50%;
-  z-index: 0;
+  /* можно в процентах указывать ширину, тогда придётся указывать проценты и для колонки,
+  в поставленной задаче идёт речь о ширине страницы 1440px,
+  намётки на универсальное решение указал в стиле логотипа шапки header__logo, 
+  на данный момент в строке 71 этот стиль */
 }
 
 .about__column {
@@ -290,14 +374,13 @@
 }
 
 .footer {
-  margin: 180px 50px 90px 50px;
+  padding: 180px 50px 90px 50px;
   display: flex;
   justify-content: space-between;
 }
 
 .footer__menu {
-  width: 149px;
-  height: 64px;
+  /* width: 149px; */
 }
 
 .footer__menu-list{
@@ -308,25 +391,51 @@
 }
 
 .footer__menu-list-item {
-  height: 100%;
+  /* height: 100%; */
 }
 
 .footer__menu-link {
   font-size: 18px;
   font-weight: 400;
   text-decoration-line: none;
+  /* underline прилипает к буквам,а border-bottom немного отстоит от них,
+  что видно на макете */
   border-bottom: 1px solid #000;
 }
 
 .footer__menu-link_active {
+  /* открытая ссылка выделяется от остальных отсутствием
+  подчёркивания, то есть в моей версии нижней границы элемента */
   border-bottom: 0px;
+  /* можно даже сделать ссылку некликабельной, но задача пока такая не стоит. */
+  /* pointer-events: none; */
+}
+
+.footer__menu-link:hover {
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration-line: none;
+  color: #F99;
+  border-bottom: 1px solid #F99;
+}
+
+.footer__menu-link_active:hover {
+  cursor: default;
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration-line: none;
+  /* при  наведении активная ссылка не должна привлекать внимание изменением цвета */
+  color: currentColor;
+  border-bottom: 0px solid #000;
 }
 
 .footer__social-list {
   display: flex;
+  height: 100%;
   justify-content: space-between;
-  width: 240px;
-  height: 48px;
+  flex-grow: 1;
+  max-width: 240px;
+  gap: 47px;
   list-style-type: none;
 }
 
@@ -335,10 +444,11 @@
 }
 
 .footer__social-link {
-  display: block;
+  /* пробрасываем высоту */
   height: 100%;
 }
 
 .footer__social-icon {
+  /* пробрасываем высоту */
   height: 100%;
 }

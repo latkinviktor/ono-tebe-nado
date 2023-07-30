@@ -5,20 +5,18 @@
   margin: 0;
 }
 
-html{
-
-  width: 1440px;
-  max-width: 1440px;
-  overflow-x: hidden;
+body {
+  font-family: Raleway, sans-serif;
 }
 
-body
-{
-  width: 1440px;
+/* ширина 100%, что означает всю доступную ширину родителя,
+а ширина родителя автоматически вычисляется по контенту.
+но ограничиваем размер на случай больших экранов,
+выравниваем по горизонтали */
+.page {
+  width: 100%;
   max-width: 1440px;
-  overflow-x: hidden;
-  margin: 0;
-  font-family: Raleway, sans-serif;
+  margin: auto;
 }
 
 h1,
@@ -38,6 +36,10 @@ blockquote {
 
 a {
   color: inherit;
+}
+
+a:hover {
+  cursor: pointer;
 }
 
 img {
